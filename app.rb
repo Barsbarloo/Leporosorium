@@ -43,5 +43,7 @@ post '/new' do
 		@error = 'Type Post Text'
 		return erb :new 
 	end
+	init_db
+	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 	erb "You typed #{content}"
 end
